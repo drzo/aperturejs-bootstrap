@@ -16,7 +16,7 @@
 	<properties>
 		<!-- Implied environment=development if environment property not set -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<aperture.version>1.0.7-SNAPSHOT</aperture.version>
+		<aperture.version>1.0.7</aperture.version>
 	</properties>
 
 	<dependencies>
