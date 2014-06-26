@@ -35,7 +35,7 @@ A minimal setup is sufficient for an automated build or CI machine and you'll be
 
 #### Client
 
-First install all dependencies:
+First install all dependencies. From the `client` directory run:
 ```
 npm install
 bower install
