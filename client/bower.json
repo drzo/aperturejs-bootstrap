@@ -1,5 +1,5 @@
 {
-  "name": "client",
+  "name": "aperturejs-bootstrap",
   "private": true,
   "dependencies": {
     "modernizr": "~2.8.2",
