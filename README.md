@@ -51,6 +51,15 @@ gulp serve
 
 #### Server
 
+Before building and running the server for the first time, ensure you have cloned the [Aperture JS repo](https://github.com/oculusinfo/aperturejs), built, and installed the artifacts into your local Maven repository. This only needs to be done once:
+
+```
+cd {/somewhere appropriate on your filesystem/}
+git clone https://github.com/oculusinfo/aperturejs
+cd aperturejs/aperture
+mvn install
+```
+
 During development the Java servlet only handles "API" requests. html, js, css and other "front-end" files are all handled by the gulp client development server. 
 
 To run the development API server on port `8080` use the following command from the `server` directory:
@@ -71,7 +80,7 @@ mvn clean install -Denvironment=deployment
 
 This will include a stage that does `npm install`, `bower install` and builds the production client distribution. The generated WAR file will contain the entire server and client package. This WAR can be found in `server/target`.
 
-To run and test the production server:
+To run and test the built production server:
 
 ```
 mvn jetty:run -Denvironment=deployment
@@ -82,4 +91,26 @@ Generally the server build process will handle making the production client for 
 gulp build
 ```
 
+## Troubleshooting
 
+#### npm won't install packages globally, requests sudo
+If you'd rather not install global npm packages with `sudo` take a look at https://gist.github.com/isaacs/579814 or run:
+```
+npm config set prefix ~/npm
+```
+And add the following line to your `.bashrc`:
+```
+export PATH=$HOME/npm/bin:$PATH
+```
+*Courtesy of http://stackoverflow.com/a/18277225/1204216*
+
+
+#### Unable to connect to github.com via git:// protocol
+A local or network firewall may be blocking the port that the `git://` protocol is trying to use. Instruct git to fallback to `https`
+```
+git config --global url.https://github.com/.insteadOf git://github.com/
+``` 
+
+
+#### The server build fails, cannot find artifact `oculus.aperture.*`
+At this time the Aperture JS JAR files are not available in a public Maven repository. Until they are you must clone the Aperture JS source (https://github.com/oculusinfo/aperturejs) and follow the instructions to build and install the artifacts into your local maven repository.
